@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-
-
-
 import Navbar from './layout/Navbar'
+import '../Login.css';
+
 
 export default class Weekly extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
 
         this.state = {
@@ -13,12 +12,13 @@ export default class Weekly extends Component {
         }
         //recieves data from API Call via to feed into Chart
     }
-    render(){
+
+    render() {
         return (
             <div>
-            <Navbar />
-                
-
+                <body id="main-page">
+                    <Navbar />
+                </body>
             </div>
         )
     }

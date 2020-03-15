@@ -9,11 +9,13 @@ class Nav extends Component {
       collapsed: true
     };
   }
+  
   toggleNavbar() {
     this.setState({
       collapsed: !this.state.collapsed
     });
   }
+
   render() {
     const collapsed = this.state.collapsed;
     const classOne = collapsed
