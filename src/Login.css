@@ -1,3 +1,4 @@
+/* Always started with this template, not rly sure what it does but it works, feel free to change it. */
 html {
     margin: 0;
     padding: 0;
@@ -6,12 +7,25 @@ html {
 }
 
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300&display=swap');
-body {
+
+/* Instead of typing body{} here, we can add different body id's to different pages to change their appearance. */
+/* Currently using this technique to just change background */
+#login-page {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100vh;
     background: url(BG.jpg) 50% 50%;
+    background-size: cover;
+    display: table;
+}
+
+#main-page {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    background: url(White-BG.jpg) 50% 50%;
     background-size: cover;
     display: table;
 }
@@ -35,9 +49,7 @@ body {
     text-align: center;
 }
 
-
 /* Text boxes */
-
 input {
     display: block;
     width: 320px;
@@ -63,20 +75,22 @@ input[type="text2"] {
     text-align: center;
 }
 
+/* Chrome only i think */
+input::-webkit-input-placeholder {
+    color: #fff;
+}
+
+input:focus::-webkit-input-placeholder {
+    color:#999;
+}
+
 input:focus {
     border: 1px solid rgba(255, 255, 255, 1);
 }
 
-.signin form input::placeholder {
-    color: #fff;
-}
-
-
 /* ===== END ===== */
 
-
 /* Buttons */
-
 input[type="submit"] {
     width: 200px;
     height: 50px;
