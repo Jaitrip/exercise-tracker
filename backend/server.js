@@ -15,32 +15,6 @@ app.use((request, result, next) => {
     next();
 });
 
-const connection = mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    database: process.env.DB_DATABASE,
-    password: process.env.DB_PASS
-  });
-  
-connection.connect(function(error) {
-    if (!!error) {
-        console.log("Error can't connect " + error)
-    } else {
-        console.log("Connected")
-    }
-})
-
-app.get('/status', (req, res) => res.send('Working!'));
-
-
-app.get("/getUsers", (request, result) => {
-    let sql = "SELECT * FROM User WHERE UserID =" + request.userId
-    connection.query(sql, (error, results) => {
-        if (error) throw error
-        console.log(results)
-    })
-})
-
 const userRouter = require('./endpoint_routes/UserRoute');
 const exerciseRouter = require('./endpoint_routes/ExerciseRoute');
 const workoutRouter = require('./endpoint_routes/WorkoutRoute');
