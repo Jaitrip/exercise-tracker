@@ -49,7 +49,7 @@ html {
     text-align: center;
 }
 
-/* Text boxes */
+/*  ================== Text boxes ==================== */
 .signin form input {
     display: block;
     width: 320px;
@@ -68,7 +68,7 @@ html {
     transition: 0.25s;
 }
 
-input[type="text2"] {
+.signin input[type="text2"] {
     margin: auto;
     margin-bottom: 10px;
     width: 200px;
@@ -76,24 +76,46 @@ input[type="text2"] {
 }
 
 /* Chrome only i think */
-input::-webkit-input-placeholder {
+.signin input::-webkit-input-placeholder {
     color: #fff;
 }
 
-input:focus::-webkit-input-placeholder {
+.signin input:focus::-webkit-input-placeholder {
     color:#999;
 }
 
-input:focus {
+.signin input:focus {
     border: 1px solid rgba(255, 255, 255, 1);
 }
+
+
+/* .workout form input {
+    display: block;
+    width: 320px;
+    height: 50px;
+    background: black;
+    background: rgba(0, 0, 0, 0.3);
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    font-family: Source Sans Pro, sans-serif;
+    font-weight: lighter;
+    font-size: 14px;
+    color: #fff;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    border-radius: 15px;
+    transition: 0.25s;
+} */
 
 /* ===== END ===== */
 
 /* Buttons */
-.signin form input[type="submit"] {
+
+
+.signin form input[type="submit"], .workout form input[type="submit"] {
     width: 200px;
     height: 50px;
+    text-align: center;
     font-size: 16px;
     background: rgba(0, 0, 0, 0.7);
     font-weight: lighter;
@@ -105,7 +127,7 @@ input:focus {
     transition: 0.25s;
 }
 
-.signin form input[type="submit"]:hover {
+.signin form input[type="submit"]:hover,.workout form input[type="submit"]:hover {
     border: 1px solid #000;
     border-radius: 20px;
     background: #fff;
@@ -122,9 +144,12 @@ input:focus {
     margin: 0;
     padding: 0;
     width: 100%;
-    height: 60vh;
-    display: table;
-    background: grey;
+    height: 100vh;
+    /* background: grey; */
+    /*background: url(BG.jpg) 50% 50%; /* We can change this later */
+    background-size: cover;
+    /* display: table; */
+    display: block;
 }
 
 #workout-page h2{
@@ -132,46 +157,94 @@ input:focus {
     margin-bottom: 15px;
     text-align: center;
 }
- 
-.workout {
-    /* text-align: center; */
+
+.workout-container {
+    width: 100%;
+    height: 100vh;
     margin: 0;
-    /* width: 50%; */
-    /* position: relative;
-    height: 50px; */
+    padding: 0;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50.025%);
+    background: url(BG.jpg) 50% 50%; /* We can change this later */
+    background-size: cover;
+}
+
+.workout {
+    width: 800px;
+    height: 100%;
+    margin: 0;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    background: white;
+    background: rgba(255, 255, 255, 0.5);
  }
 
- .workout form{
-    /* display: inline-block; */
- }
+ /* .workout form{
+    display: inline-block;
+ } */
 
- .workout form label{
-    text-align: left;
- }
+ .workout h2 {
+    margin-top: 0px;
+    font-family: Source Sans Pro, sans-serif;
+    font-weight: bold;
+    color: #000;
+    font-size: 50px;
+    text-align: center;
+}
 
 .workout form input{
-    background: white;
     text-align: left;
     display: block;
     width: 600px;
     height: 40px;
+    margin: auto;
     margin-bottom: 20px;
+
+    background: rgba(0, 0, 0, 0.3);
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    font-family: Source Sans Pro, sans-serif;
+    font-weight: lighter;
+    font-size: 16px;
+    color: #fff;        margin-bottom: 10px;
+    padding-left: 10px;
+    border-radius: 15px;
+    transition: 0.25s;
  }
 
  .workout form input::-webkit-input-placeholder{
-    color: black;
+    color: white;
     text-align: center;
  }
 
  .workout form input:focus::-webkit-input-placeholder{
-     color: #555;
+     color: #444;
  }
 
+.workout form label{
+    text-align: left;
+    display: block;
+    margin-bottom: 5px;
+    font-family: Source Sans Pro, sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+}
+
  .workout form .date-picker input{
-    background: white;
+    /* background: white; */
+    padding: 0%;
+    text-align: center;
     width: 100px;
  }
+
+ .workout form label, .workout form .date-picker input {
+    margin-left: 100px;
+ }
+
+/* .workout form input[type="submit"]{
+    width: 140px;
+    background-color: black;
+    color: white;
+    border-color: red;
+} */

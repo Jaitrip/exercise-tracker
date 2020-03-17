@@ -59,6 +59,16 @@ class Nav extends Component {
                 Weekly
                 </Link>
               </li>
+              <li>
+                <Link className="nav-link" to="/workout">
+                Workout
+                </Link>
+              </li>
+              <li>
+                <Link className="nav-link" to="/exercise">
+                Exercise
+                </Link>
+              </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/">
                   Sign Out
