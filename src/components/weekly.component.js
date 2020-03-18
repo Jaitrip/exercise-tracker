@@ -13,8 +13,8 @@ export default class Weekly extends Component {
 
   render() {
     return (
+
       <div>
-        <body id="main-page">
           <Navbar />
           <div className="jumbotron jumbotron-fluid py-2">
             <div className="container">
@@ -30,8 +30,7 @@ export default class Weekly extends Component {
             
             </div>
           </div>
-        </body>
-      </div>
+          </div>
     );
   }
 }
