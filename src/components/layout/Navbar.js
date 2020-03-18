@@ -44,29 +44,19 @@ class Nav extends Component {
           </button>
           <div className={`${classOne}`} id="navbarResponsive">
             <ul className="navbar-nav ml-auto">
-              <li className="nav-item active">
-                <Link className="nav-link" to="/">
-                  Profile
+              <li className="nav-item ">
+                <Link className="nav-link" to="/workout">
+                  Workout
                 </Link>
               </li>        
               <li className="nav-item">
-                <Link className="nav-link" to="/meals">
-                  Meals
+                <Link className="nav-link" to="/exercise">
+                  Exercise
                 </Link>
               </li>
-              <li className="nav-item active">
+              <li className="nav-item">
                 <Link className="nav-link" to="/weekly">
                 Weekly
-                </Link>
-              </li>
-              <li>
-                <Link className="nav-link" to="/workout">
-                Workout
-                </Link>
-              </li>
-              <li>
-                <Link className="nav-link" to="/exercise">
-                Exercise
                 </Link>
               </li>
               <li className="nav-item">

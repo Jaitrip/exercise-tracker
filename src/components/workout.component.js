@@ -3,7 +3,7 @@ import Navbar from './layout/Navbar'
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import '../Login.css';
-import Nav from './layout/Navbar';
+
 
 
 export default class AddWorkout extends Component {
@@ -99,7 +99,7 @@ export default class AddWorkout extends Component {
     }
 }
 
-{/* <body id="main-page">
+/*{ <body id="main-page">
     <Navbar />
     <h3>Create New Workout</h3>
     <form onSubmit={this.onSubmit}>
@@ -144,5 +144,5 @@ export default class AddWorkout extends Component {
             <input type="submit" value="Create workout" className="btn btn-primary" />
         </div>
     </form>
-</body> */}
+</body> }*/
 

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Navbar from "./layout/Navbar";
+import "../index.css";
 
 export default class Weekly extends Component {
   constructor(props) {
@@ -18,11 +19,7 @@ export default class Weekly extends Component {
           <Navbar />
           <div className="jumbotron jumbotron-fluid py-2">
             <div className="container">
-              <h1 className="display-4">Weekly Overview</h1>
-              <p className="lead">
-                This is a modified jumbotron that occupies the entire horizontal
-                space of its parent.
-              </p>
+              <h1 className="display-4">Exercise</h1>
             </div>
           </div>
           <div className="container">
