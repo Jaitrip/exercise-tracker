@@ -12,8 +12,7 @@ export default class Login extends Component {
         }
 
         this.onSubmit = this.onSubmit.bind(this)
-        this.handleUsernameChange = this.handleUsernameChange.bind(this)
-        this.handlePasswordChange = this.handlePasswordChange.bind(this)
+        this.handleChange = this.handleChange.bind(this)
         this.onLoginSubmit = this.onLoginSubmit.bind(this)
     }
 
@@ -22,19 +21,14 @@ export default class Login extends Component {
         e.preventDefault();
         window.location = '/signup';
     }
+    
+    handleChange(event) {
+        const value = event.target.value
+        const name = event.target.name
 
-    handleUsernameChange(event) {
         this.setState({
-            username : event.target.value
+            [name] : value
         })
-        event.preventDefault();
-    }
-
-    handlePasswordChange(event) {
-        this.setState({
-            password : event.target.value
-        })
-        event.preventDefault();
     }
 
     onLoginSubmit(event) {
@@ -61,13 +55,28 @@ export default class Login extends Component {
                     <div className="signin">
                         <form onSubmit={this.onLoginSubmit}>
                             <h2>Exercise Tracker</h2>
-                            <input type="text" placeholder="Enter Username" value={this.state.username} onChange={this.handleUsernameChange}></input>
-                            <input type="password" placeholder="Enter Password" value={this.state.password} onChange={this.handlePasswordChange}></input>
-                            <input type="submit" value="Log In"></input>
+                            <input 
+                                type="text" 
+                                name="username"
+                                placeholder="Enter Username" 
+                                value={this.state.username} 
+                                onChange={this.handleChange}
+                            />
+                            <input 
+                                type="password" 
+                                name="password"
+                                placeholder="Enter Password" 
+                                value={this.state.password} 
+                                onChange={this.handleChange}
+                            />
+                            <input 
+                                type="submit" 
+                                value="Log In"
+                            />
                         </form>
 
                         <form onSubmit={this.onSubmit}>
-                            <input type="submit" value="Sign up"></input>
+                            <input type="submit" value="Sign up"/>
                         </form>
                     </div>
                 </body>
