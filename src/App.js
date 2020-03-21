@@ -8,6 +8,7 @@ import SignUp from "./components/signup.component"
 import Weekly from "./components/weekly.component"
 import AddWorkout from "./components/workout.component"
 import Exercise from "./components/exercise.component"
+import MainMeals from "./components/mainMeals.component"
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/weekly" exact component={Weekly} />
           <Route path="/workout" exact component={AddWorkout} />
           <Route path="/exercise" exact component={Exercise} />
+          <Route path="/mainMeals" exact component={MainMeals} />
         </div>
     </Router>
   );

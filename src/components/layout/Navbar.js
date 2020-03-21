@@ -55,6 +55,11 @@ class Nav extends Component {
                 </Link>
               </li>
               <li className="nav-item">
+                <Link className="nav-link" to="/mainMeals">
+                  Meals
+                </Link>
+              </li>
+              <li className="nav-item">
                 <Link className="nav-link" to="/weekly">
                 Weekly
                 </Link>
