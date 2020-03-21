@@ -12,15 +12,14 @@ import Exercise from "./components/exercise.component"
 function App() {
   return (
     <Router>
-      <div>
-        <Route path="/" exact component={Login} />
-        <Route path="/signup" exact component={SignUp} />
-        <Route path="/weekly" exact component={Weekly} />
-        <Route path="/workout" exact component={AddWorkout} />
-        <Route path="/exercise" exact component={Exercise} />
-      </div>
+        <div>
+          <Route path="/" exact component={Login} />
+          <Route path="/signup" exact component={SignUp} />
+          <Route path="/weekly" exact component={Weekly} />
+          <Route path="/workout" exact component={AddWorkout} />
+          <Route path="/exercise" exact component={Exercise} />
+        </div>
     </Router>
-
   );
 }
 export default App;

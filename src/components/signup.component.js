@@ -58,8 +58,7 @@ export default class SignUp extends Component {
 
     render() {
         return (
-            <div>
-                <body id="login-page">
+                <div id="login-page">
                     <div className="signin">
                         <form onSubmit={this.onSubmit}>
                             <h2>Exercise Tracker</h2>
@@ -70,6 +69,7 @@ export default class SignUp extends Component {
                                 placeholder="Username"
                                 value={this.state.username} 
                                 onChange={this.handleChange}
+                                autoComplete="off"
                             />
                             <input 
                                 type="text"
@@ -78,6 +78,7 @@ export default class SignUp extends Component {
                                 placeholder="Name"
                                 value={this.state.name} 
                                 onChange={this.handleChange}
+                                autoComplete="off"
                             />
                             <input 
                                 type="password" 
@@ -102,6 +103,7 @@ export default class SignUp extends Component {
                                 placeholder="Age"
                                 value={this.state.age} 
                                 onChange={this.handleChange}
+                                autoComplete="off"
                             />
                             <input 
                                 type="text2"
@@ -110,6 +112,7 @@ export default class SignUp extends Component {
                                 placeholder="Weight"
                                 value={this.state.weight} 
                                 onChange={this.handleChange}
+                                autoComplete="off"
                             />
                             <input 
                                 type="text2"
@@ -118,6 +121,7 @@ export default class SignUp extends Component {
                                 placeholder="Weight Goal"
                                 value={this.state.weightGoal} 
                                 onChange={this.handleChange}
+                                autoComplete="off"
                             />
                             <input 
                                 type="submit" 
@@ -125,8 +129,7 @@ export default class SignUp extends Component {
                             />
                         </form>
                     </div>
-                </body>
-            </div>
+                </div>
         )
     }
 }

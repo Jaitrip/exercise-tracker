@@ -63,37 +63,34 @@ export default class AddWorkout extends Component {
 
     render() {
         return (
-            <div>
+            <div id="workout-page">
+                <header id="header-workout">
+                    <Navbar /> {/* Note to myself: Figure out how to make navbar scroll with the page */}
+                </header>
+                <div className="workout-container">
+                    <div className="workout">
+                        <h2>Create Workout</h2>
+                        <form>
+                            <label>Workout Name</label>
+                            <input type="text" placeholder="Enter workout name"></input>
+                            <label>Workout Type</label>
+                            <input type="text" placeholder="Enter type"></input>
+                            <label>Duration (in minutes)</label>
+                            <input type="text" placeholder="Enter duration"></input>
+                            <label>Exercises</label>
+                            <input type="text" placeholder="Change this. Maybe add a table where user can see all the exercises available and select them"></input>
+                            <label>Date</label>
+                            <div className="date-picker">
+                                <DatePicker
+                                    selected={this.state.date}
+                                    onChange={this.onChangeDate}
+                                />
+                            </div>
+                            <input type="submit" value="Create Workout"></input>
+                        </form>
 
-                <body id="workout-page">
-                    <header id="header-workout">
-                        <Navbar /> {/* Note to myself: Figure out how to make navbar scroll with the page */}
-                    </header>
-                    <div className="workout-container">
-                        <div className="workout">
-                            <h2>Create Workout</h2>
-                            <form>
-                                <label>Workout Name</label>
-                                <input type="text" placeholder="Enter workout name"></input>
-                                <label>Workout Type</label>
-                                <input type="text" placeholder="Enter type"></input>
-                                <label>Duration (in minutes)</label>
-                                <input type="text" placeholder="Enter duration"></input>
-                                <label>Exercises</label>
-                                <input type="text" placeholder="Change this. Maybe add a table where user can see all the exercises available and select them"></input>
-                                <label>Date</label>
-                                <div className="date-picker">
-                                    <DatePicker
-                                        selected={this.state.date}
-                                        onChange={this.onChangeDate}
-                                    />
-                                </div>
-                                <input type="submit" value="Create Workout"></input>
-                            </form>
-                            
-                        </div>
                     </div>
-                </body>
+                </div>
             </div>
         )
     }

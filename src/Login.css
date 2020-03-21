@@ -88,29 +88,8 @@ html {
     border: 1px solid rgba(255, 255, 255, 1);
 }
 
-
-/* .workout form input {
-    display: block;
-    width: 320px;
-    height: 50px;
-    background: black;
-    background: rgba(0, 0, 0, 0.3);
-    outline: none;
-    border: 1px solid rgba(0, 0, 0, 0.5);
-    font-family: Source Sans Pro, sans-serif;
-    font-weight: lighter;
-    font-size: 14px;
-    color: #fff;
-    margin-bottom: 10px;
-    padding-left: 10px;
-    border-radius: 15px;
-    transition: 0.25s;
-} */
-
 /* ===== END ===== */
-
 /* Buttons */
-
 
 .signin form input[type="submit"], .workout form input[type="submit"] {
     width: 200px;
@@ -166,7 +145,7 @@ html {
     position: relative;
     left: 50%;
     transform: translateX(-50.025%);
-    background: url(BG.jpg) 50% 50%; /* We can change this later */
+    background: url(BG2.jpg) 50% 50%; /* We can change this later */
     background-size: cover;
 }
 
