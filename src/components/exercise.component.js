@@ -22,7 +22,7 @@ export default class Weekly extends Component {
                 </header>
                 <div className="workout-container">
                     <div className="workout">
-                        <h2>Create Workout</h2>
+                        <h2>Create Exercise</h2>
                         <form>
                             <label>Exercise Name:</label>
                             <input type="text" placeholder="Enter exercise name"></input>

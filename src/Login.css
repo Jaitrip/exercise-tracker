@@ -227,3 +227,12 @@ html {
     color: white;
     border-color: red;
 } */
+
+.workout form .button-exercise{
+    margin-left: 100px;
+}
+
+.modal-content form input{
+    display: block;
+    /* margin: auto;    */
+}
