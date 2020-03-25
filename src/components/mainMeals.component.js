@@ -30,7 +30,6 @@ export default class mainMeals extends Component {
     });
   };
 
-
   render() {
     return (
       <div>
@@ -70,9 +69,7 @@ export default class mainMeals extends Component {
               https://getbootstrap.com/docs/4.0/layout/grid/ for button styles,
               just google bootstrap buttons
 
-
-              https://react-bootstrap.github.io/layout/grid/
-<br></br>
+              https://react-bootstrap.github.io/layout/grid/<br></br>
               https://react-bootstrap.github.io/layout/grid/<br></br>
               https://react-bootstrap.github.io/layout/grid/<br></br>
               https://react-bootstrap.github.io/layout/grid/<br></br>
