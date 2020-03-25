@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Chart from "./layout/Chart";
 import Navbar from "./layout/Navbar";
 
 export default class Weekly extends Component {
@@ -6,31 +7,64 @@ export default class Weekly extends Component {
     super(props);
 
     this.state = {
-      data: ""
+      chartData: {}
     };
     //recieves data from API Call via to feed into Chart
   }
 
+  componentWillMount() {
+    this.getChartData();
+  }
+
+  getChartData() {
+    // Ajax Call Here
+    this.setState({
+      chartData: {
+        labels: [
+          "Boston",
+          "Worcester",
+          "SpringField",
+          "Lowell",
+          "Cambridge",
+          "New Bedford"
+        ],
+        datasets: [
+          {
+            label: "Population",
+            data: [617594, 181045, 153060, 106519, 105162, 95072],
+            backgroundColor: [
+              "rgba(255,99,132,0.6)",
+              "rgba(54,162,235,0.6)",
+              "rgba(255,206,86,0.6)",
+              "rgba(75,192,192,0.6)",
+              "rgba(153,102,255,0.6)",
+              "rgba(255,159,64,0.6)",
+              "rgba(255,99,132,0.6)"
+            ]
+          }
+        ]
+      }
+    });
+  }
+
   render() {
     return (
-
       <div>
-          <Navbar />
-          <div className="jumbotron jumbotron-fluid py-2">
-            <div className="container">
-              <h1 className="display-4">Weekly Overview</h1>
-              <p className="lead">
-                This is a modified jumbotron that occupies the entire horizontal
-                space of its parent.
-              </p>
+        <Navbar />
+        <div className="Weekly">
+          <div class="container">
+            <div class="row justify-content-md-center">
+              <div class="col-md-auto"></div>
+
+              <Chart
+                chartData={this.state.chartData}
+                location="New York"
+                legendPosition="bottom"
+              />
             </div>
           </div>
-          <div className="container">
-            <div className="row">
-            
-            </div>
-          </div>
-          </div>
+        </div>
+      </div>
     );
   }
 }
