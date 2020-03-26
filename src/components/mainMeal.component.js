@@ -1,23 +1,25 @@
 import React, { Component } from "react";
 import Navbar from "./layout/Navbar";
-import "../index.css";
+import "../Login.css";
 
 import { InputGroup, Container, Row, Col } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import { Modal, Button } from "react-bootstrap";
 import FormControl from "react-bootstrap/FormControl";
 
-export default class mainMeals extends Component {
+export default class mainMeal extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      exerciseName: "",
-      duration: 0,
-      caloriesBurned: 0,
-      startDate: new Date()
-    };
+    this.state = {};
     //recieves data from API Call via to feed into Chart
+
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  CreateMeal(e) {
+    e.preventDefault();
+    window.location = "/createMeal";
   }
 
   handleChange = date => {
@@ -33,7 +35,6 @@ export default class mainMeals extends Component {
     return (
       <div>
         <Navbar />
-
         <div className="jumbotron jumbotron-fluid py-2">
           <div className="container">
             <h1 className="display-4">Meal Plans</h1>
@@ -46,16 +47,23 @@ export default class mainMeals extends Component {
             <div class="col-md-auto">
               <Container>
                 <Row className="justify-content-md-center">
-                  <Col xs lg="4"></Col>
-                  <Col xs lg="5"></Col>
+                  <Col>
+                    <Button
+                      variant="btn btn-light btn-outline-dark btn-lg btn-block py-3 px-5 my-1"
+                      onClick={this.CreateMeal}
+                    >
+                      Create a Meal
+                    </Button>
+                  </Col>
                 </Row>
+
                 <Row className="justify-content-md-center">
                   <Col>
                     <Button
                       variant="btn btn-light btn-outline-dark btn-lg btn-block py-3 px-5 my-1"
                       onClick={this.handleShow}
                     >
-                      Add Exercise
+                      Add Meal (Open Modal)
                     </Button>
 
                     <Modal show={this.state.show} onHide={this.handleClose}>
@@ -88,18 +96,6 @@ export default class mainMeals extends Component {
                             <Row className="justify-content-md-center">
                               <Col xs lg="4">
                                 <label>Calories Intake</label>
-                              </Col>
-                              <Col xs lg="5">
-                                <InputGroup className="mb-3">
-                                  <InputGroup.Prepend></InputGroup.Prepend>
-                                  <FormControl />
-                                </InputGroup>
-                              </Col>
-                            </Row>
-
-                            <Row className="justify-content-md-center">
-                              <Col xs lg="4">
-                                <label>Time</label>
                               </Col>
                               <Col xs lg="5">
                                 <InputGroup className="mb-3">
