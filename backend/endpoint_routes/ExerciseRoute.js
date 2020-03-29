@@ -1,4 +1,5 @@
 const exerciseRouter = require("express").Router();
+const connection = require("../database.js");
 
 exerciseRouter.route("/addNewExercise").post((request, result) => {
     const sqlQuery = "INSERT INTO Exercise (ExerciseID, Duration, CaloriesBurnt, WorkoutWorkoutID) VALUES (?)"

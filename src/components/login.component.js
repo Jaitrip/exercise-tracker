@@ -16,7 +16,6 @@ export default class Login extends Component {
         this.onLoginSubmit = this.onLoginSubmit.bind(this)
     }
 
-
     onSubmit(e) {
         e.preventDefault();
         window.location = '/signup';
@@ -45,6 +44,7 @@ export default class Login extends Component {
                 console.log(error)
                 window.location = "/"
             })
+            
         event.preventDefault();
     }
 
