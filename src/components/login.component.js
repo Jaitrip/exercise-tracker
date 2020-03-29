@@ -36,7 +36,7 @@ export default class Login extends Component {
             .then(response => {
                 const actualPassword = response.data[0].password
                 if (actualPassword === this.state.password) {
-                    window.location = "/weekly"
+                    window.location = "/weekly/" + this.state.username
                 } else {
                     window.location = "/"
                 }

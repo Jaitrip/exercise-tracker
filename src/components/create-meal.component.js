@@ -11,7 +11,7 @@ export default class CreateMeal extends Component {
     super(props);
 
     this.state = {
-      username: "",
+      userID : this.props.match.params.id,
       mealId: "",
       mealName: "",
       caloriesIntake: 0,
@@ -68,7 +68,7 @@ export default class CreateMeal extends Component {
   render() {
     return (
       <div>
-        <Navbar />
+        <Navbar userID={this.state.userID}/>
 
         <div className="jumbotron jumbotron-fluid py-2">
           <div className="container">

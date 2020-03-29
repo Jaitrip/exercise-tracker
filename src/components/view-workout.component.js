@@ -22,6 +22,7 @@ export default class ViewWorkout extends Component {
         super(props);
 
         this.state = {
+            userID : this.props.match.params.id,
             name: '',
             type: '',
             total_duration: 0,
@@ -90,7 +91,7 @@ export default class ViewWorkout extends Component {
             return (
                 <div id="workout-page">
                     <header id="header-workout">
-                        <Navbar /> {/* Note to myself: Figure out how to make navbar scroll with the page */}
+                        <Navbar userID={this.state.userID}/> {/* Note to myself: Figure out how to make navbar scroll with the page */}
                     </header>
                     <div className="workout-container">
                         <div className="workout">
@@ -117,7 +118,7 @@ export default class ViewWorkout extends Component {
             return (
                 <div id="workout-page">
                     <header id="header-workout">
-                        <Navbar /> {/* Note to myself: Figure out how to make navbar scroll with the page */}
+                        <Navbar userID={this.state.userID}/> {/* Note to myself: Figure out how to make navbar scroll with the page */}
                     </header>
                     <div className="workout-container">
                         <div className="workout">

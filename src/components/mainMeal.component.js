@@ -1,17 +1,19 @@
 import React, { Component } from "react";
 import Navbar from "./layout/Navbar";
 import "../Login.css";
-
 import { InputGroup, Container, Row, Col } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import { Modal, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import FormControl from "react-bootstrap/FormControl";
 
 export default class mainMeal extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      userID : this.props.match.params.id
+    };
     //recieves data from API Call via to feed into Chart
 
     this.handleChange = this.handleChange.bind(this);
@@ -34,7 +36,7 @@ export default class mainMeal extends Component {
   render() {
     return (
       <div>
-        <Navbar />
+        <Navbar userID={this.state.userID}/>
         <div className="jumbotron jumbotron-fluid py-2">
           <div className="container">
             <h1 className="display-4">Meal Plans</h1>
@@ -48,12 +50,13 @@ export default class mainMeal extends Component {
               <Container>
                 <Row className="justify-content-md-center">
                   <Col>
+                  <Link to={"/createMeal/" + this.state.userID}>
                     <Button
-                      variant="btn btn-light btn-outline-dark btn-lg btn-block py-3 px-5 my-1"
-                      onClick={this.CreateMeal}
-                    >
-                      Create a Meal
+                        variant="btn btn-light btn-outline-dark btn-lg btn-block py-3 px-5 my-1"
+                      >
+                        Create a Meal
                     </Button>
+                  </Link>
                   </Col>
                 </Row>
 

@@ -6,7 +6,8 @@ class Nav extends Component {
     super(props);
     this.toggleNavbar = this.toggleNavbar.bind(this);
     this.state = {
-      collapsed: true
+      collapsed: true,
+      userID : this.props.userID
     };
   }
   
@@ -45,7 +46,7 @@ class Nav extends Component {
           <div className={`${classOne}`} id="navbarResponsive">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item ">
-                <Link className="nav-link" to="/workout">
+                <Link className="nav-link" to={"/workout/" + this.state.userID}>
                   Workout
                 </Link>
               </li>        
@@ -55,12 +56,12 @@ class Nav extends Component {
                 </Link>
               </li> */}
               <li className="nav-item">
-                <Link className="nav-link" to="/mainMeal">
+                <Link className="nav-link" to={"/mainMeal/" + this.state.userID}>
                   Meals
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/weekly">
+                <Link className="nav-link" to={"/weekly/"  + this.state.userID}>
                 Weekly
                 </Link>
               </li>

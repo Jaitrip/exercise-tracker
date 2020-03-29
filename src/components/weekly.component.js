@@ -7,6 +7,7 @@ export default class Weekly extends Component {
     super(props);
 
     this.state = {
+      userID : this.props.match.params.id,
       chartData: {}
     };
     //recieves data from API Call via to feed into Chart
@@ -50,7 +51,7 @@ export default class Weekly extends Component {
   render() {
     return (
       <div>
-        <Navbar />
+        <Navbar userID={this.state.userID}/>
         <div className="Weekly">
           <div class="container">
             <div class="row justify-content-md-center">

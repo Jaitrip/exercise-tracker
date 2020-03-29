@@ -7,7 +7,8 @@ import Login from "./components/login.component"
 import SignUp from "./components/signup.component"
 import Weekly from "./components/weekly.component"
 import Workout from "./components/workout.component"
-// import Exercise from "./components/exercise.component"
+import AddWorkout from "./components/create-workout.component"
+import ViewWorkout from "./components/view-workout.component"
 import MainMeal from "./components/mainMeal.component"
 import CreateMeal from './components/create-meal.component';
 
@@ -17,11 +18,12 @@ function App() {
         <div>
           <Route path="/" exact component={Login} />
           <Route path="/signup" exact component={SignUp} />
-          <Route path="/weekly" exact component={Weekly} />
-          <Route path="/workout" exact component={Workout} />
-          {/* <Route path="/exercise" exact component={Exercise} /> */}
-          <Route path="/mainMeal" exact component={MainMeal} />
-          <Route path="/createMeal" exact component={CreateMeal} />
+          <Route path="/weekly/:id" exact component={Weekly} />
+          <Route path="/workout/:id" exact component={Workout} />
+          <Route path="/workout/createWorkout/:id" exact component={AddWorkout} />
+          <Route path="/workout/viewWorkout/:id" exact component={ViewWorkout} />
+          <Route path="/mainMeal/:id" exact component={MainMeal} />
+          <Route path="/createMeal/:id" exact component={CreateMeal} />
         </div>
     </Router>
   );
