@@ -60,13 +60,15 @@ export default class AddWorkout extends Component {
     addExercises(workoutID) {
         const exercises = this.state.exercises
         exercises.forEach((exercise) => {
+            console.log(exercise.exerciseName)
             axios.post(
                 "http://localhost:5000/exercise/addNewExercise", 
                 {
                     exercise_id : uuidv4(),
                     duration : exercise.exerciseDuration,
                     calories_burnt : exercise.caloriesBurnt,
-                    workout_id : workoutID
+                    workout_id : workoutID,
+                    exercise_name : exercise.exerciseName
                 }
             )
             .then(response => {

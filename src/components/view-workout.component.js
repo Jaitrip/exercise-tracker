@@ -99,11 +99,10 @@ export default class ViewWorkout extends Component {
                             <table className="table">
                                 <thead className="thead-light">
                                     <tr>
-                                        <th>Username</th>
-                                        <th>Description</th>
+                                        <th>Workout Name</th>
+                                        <th>Workout Type</th>
                                         <th>Duration (in minutes)</th>
                                         <th>Date</th>
-                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
