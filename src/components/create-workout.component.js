@@ -167,6 +167,24 @@ export default class AddWorkout extends Component {
                                 placeholder="Enter duration"
                             />
                             <label>Exercises</label>
+                            <table className="table">
+                                <thead className="thead-light">
+                                    <tr>
+                                        <th>Exercise Name</th>
+                                        <th>Exercise Duration (in minutes)</th>
+                                        <th>Calories Burnt</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {this.state.exercises.map((row, index) => (
+                                        <tr>
+                                            <td>{row.exerciseName}</td>
+                                            <td>{row.exerciseDuration}</td>
+                                            <td>{row.caloriesBurnt}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
                             {/* ======================================================= */}
                             <div className="button-exercise">
                                 <Button variant="primary" onClick={this.handleShow}>
