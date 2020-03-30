@@ -53,7 +53,7 @@ workoutRouter.route("/getWorkoutBetweenDates").post((request, result) => {
         request.body.start_date,
         request.body.end_date
     ]
-    connection.query(sqlQuery, [values], (error, rows, fields) => {
+    connection.query(sqlQuery, values, (error, rows, fields) => {
         if (!error) {
             result.send(rows)
         } else {

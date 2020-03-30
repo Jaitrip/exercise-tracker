@@ -1,21 +1,9 @@
 import React, { Component } from 'react';
 import Navbar from './layout/Navbar'
 import DatePicker from 'react-datepicker';
+import axios from "axios";
 import "react-datepicker/dist/react-datepicker.css";
-import { Modal, Button } from 'react-bootstrap'
 import '../Login.css';
-
-// const Workout = props => (
-//     <tr>
-//       <td>{props.workout.username}</td>
-//       <td>{props.workout.description}</td>
-//       <td>{props.workout.duration}</td>
-//       <td>{props.workout.date.substring(0,10)}</td>
-//       <td>
-//         <Link to={"/edit/"+props.workout._id}>edit</Link> | <a href="#" onClick={() => { props.deleteExercise(props.exercise._id) }}>delete</a>
-//       </td>
-//     </tr>
-//   ) /* I forgot how to do this btw LMAO */
 
 export default class ViewWorkout extends Component {
     constructor(props) {
@@ -23,75 +11,70 @@ export default class ViewWorkout extends Component {
 
         this.state = {
             userID : this.props.match.params.id,
-            name: '',
-            type: '',
-            total_duration: 0,
-            date: new Date(),
-            exercises: [],
+            beginingDate: new Date(),
+            endingDate: new Date(),
+            workouts: [],
             showWorkout: false,
         }
 
-        // this.handleClose = this.handleClose.bind(this);
-        // this.handleShow = this.handleShow.bind(this);
-        //recieves data from API Call via to feed into Chart
-
+        this.onChangeBeginingDate = this.onChangeBeginingDate.bind(this);
+        this.onChangeEndingDate = this.onChangeEndingDate.bind(this);
         this.handleShowWorkout = this.handleShowWorkout.bind(this);
     }
 
-    onChangeName(e) {
+    onChangeBeginingDate(date) {
         this.setState({
-            name: e.target.value
+            beginingDate: date
         });
     }
 
-    onChangeType(e) {
+    onChangeEndingDate(date) {
         this.setState({
-            type: e.target.value
+            endingDate: date
         });
     }
 
-    onChangeDuration(e) {
-        this.setState({
-            total_duration: e.target.value
-        });
+    handleShowWorkout = (event) => {
+        const formattedBeginingDate = new Date(this.state.beginingDate).toISOString().slice(0, 10)
+        const formattedEndingDate = new Date(this.state.endingDate).toISOString().slice(0, 10)
+        axios.post(
+            "http://localhost:5000/workout/getWorkoutBetweenDates", 
+            {
+                user_id : this.state.userID,
+                start_date : formattedBeginingDate,
+                end_date : formattedEndingDate
+            }
+        )
+        .then(response => {
+            const workouts = response.data
+            workouts.forEach((workout) => {
+                const formattedWorkout = {
+                    workoutName : workout.Name,
+                    workoutDuration : workout.Duration,
+                    workoutType : workout.Type,
+                    workoutDate :  new Date(workout.Date).toISOString().slice(0, 10)
+                }
+                this.setState({
+                    workouts : this.state.workouts.concat([formattedWorkout])
+                })
+            })
+            this.setState({
+                showWorkout : true
+            })
+            console.log(this.state.workouts)
+        })
+        .catch(error => {
+            console.log(error)
+        })
+        event.preventDefault()
     }
-
-    onChangeDate(date) {
-        this.setState({
-            date: date
-        });
-    }
-
-    onSubmit(e) {
-        e.preventDefault();
-
-        const newWorkout = {
-            name: this.state.name,
-            description: this.state.description,
-            duration: this.state.duration,
-            date: this.state.date
-        };
-
-        console.log(newWorkout);
-
-        // TODO POST CALL TO DATABASE ADDING NEW WORKOUT
-
-        window.location = '/';
-    }
-
-    // handleClose = () => this.setState({ show: false });
-    // handleShow = () => this.setState({ show: true });
-
-    handleShowWorkout = () => this.setState({ showWorkout: true });
 
     render() {
-
-
         if (this.state.showWorkout === true) {
             return (
                 <div id="workout-page">
                     <header id="header-workout">
-                        <Navbar userID={this.state.userID}/> {/* Note to myself: Figure out how to make navbar scroll with the page */}
+                        <Navbar userID={this.state.userID}/>
                     </header>
                     <div className="workout-container">
                         <div className="workout">
@@ -106,7 +89,14 @@ export default class ViewWorkout extends Component {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {/* {this.workoutList()} */}
+                                    {this.state.workouts.map((row, index) => (
+                                        <tr>
+                                            <td>{row.workoutName}</td>
+                                            <td>{row.workoutType}</td>
+                                            <td>{row.workoutDuration}</td>
+                                            <td>{row.workoutDate}</td>
+                                        </tr>
+                                    ))}
                                 </tbody>
                             </table>
                         </div>
@@ -126,15 +116,15 @@ export default class ViewWorkout extends Component {
                                 <label>From:</label>
                                 <div className="date-picker">
                                     <DatePicker
-                                        selected={this.state.date}
-                                        onChange={this.onChangeDate}
+                                        selected={this.state.beginingDate}
+                                        onChange={this.onChangeBeginingDate}
                                     />
                                 </div>
                                 <label>To:</label>
                                 <div className="date-picker">
                                     <DatePicker
-                                        selected={this.state.date}
-                                        onChange={this.onChangeDate}
+                                        selected={this.state.endingDate}
+                                        onChange={this.onChangeEndingDate}
                                     />
                                 </div>
                             </form>
