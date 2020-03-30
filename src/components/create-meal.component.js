@@ -5,6 +5,7 @@ import "../Login.css";
 import { Container, Row, Col } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import {Button } from "react-bootstrap";
+import {v4 as uuidv4} from "uuid";
 
 export default class CreateMeal extends Component {
   constructor(props) {
@@ -12,43 +13,42 @@ export default class CreateMeal extends Component {
 
     this.state = {
       userID : this.props.match.params.id,
-      mealId: "",
       mealName: "",
       caloriesIntake: 0,
       date: new Date()
     };
+
     this.handleChange = this.handleChange.bind(this);
+    this.cancelCreateMeal = this.cancelCreateMeal.bind(this);
+    this.onChangeDate = this.onChangeDate.bind(this);
+    this.onCreateMeal = this.onCreateMeal.bind(this);
   }
 
-  static defaultProps = {
-    userId: ""
-  };
-
   onCreateMeal(e) {
-    axios
-      .post("http://localhost:5000/user/addNewMeal", {
-        user_id: this.props.userId,
-        meal_name: this.state.mealName,
-        calorie_intake: this.state.caloriesIntake,
-        date: this.state.date
+    const formattedDate = new Date(this.state.date).toISOString().slice(0, 10)
+    axios.post(
+      "http://localhost:5000/meal/addNewMeal", 
+      {
+        meal_id : uuidv4(),
+        meal_name : this.state.mealName,
+        calorie_intake : this.state.caloriesIntake,
+        date : formattedDate,
+        user_id : this.state.userID
       })
       .then(response => {
         console.log(response);
         console.log("Meal created successfully!");
-        window.location = "/";
+        window.location = "/createMeal/" + this.state.userID;
       })
       .catch(error => {
         console.log(error);
-        window.location = "/mainMeals";
       });
-
-    console.log("HELLO");
     e.preventDefault();
   }
 
   cancelCreateMeal(e) {
     e.preventDefault();
-    window.location = "/mainMeal";
+    window.location = "/mainMeal/" + this.state.userID;
   }
 
   handleChange(event) {
