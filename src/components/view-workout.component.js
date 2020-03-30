@@ -136,9 +136,5 @@ export default class ViewWorkout extends Component {
                 </div>
             )
         }
-
-
-
-
     }
 }

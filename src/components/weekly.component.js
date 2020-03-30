@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Chart from "./layout/Chart";
 import Navbar from "./layout/Navbar";
 import { Bar, Line } from "react-chartjs-2";
-import {Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
@@ -117,37 +117,37 @@ export default class Weekly extends Component {
 
   render() {
     return (
-      
-      <div>
-         <Navbar userID={this.state.userID} />
-      <div id="weekly-page">
 
-      <div class="col-lg-5 justify-content-md-center  ">
+      <div>
+        <Navbar userID={this.state.userID} />
+        <div id="weekly-page">
+
+          <div class="col-lg-5 justify-content-md-center  ">
             <h1 className="display-2 "> Weekly Chart</h1>
 
             <Container>
-                <Row className = "bg-light"> 
-                  <Col>
-                  
+              <Row className="bg-light">
+                <Col>
+
                   <Chart
-                  chartData={this.state.chartData}
-                  title="Calories inTake"
-                  legendPosition="bottom"
-                  type={Bar}
-                />
-                  </Col>
-                </Row>
-                <Row className="bg-light">
+                    chartData={this.state.chartData}
+                    title="Calories inTake"
+                    legendPosition="bottom"
+                    type={Bar}
+                  />
+                </Col>
+              </Row>
+              <Row className="bg-light">
                 <Col>
                   <Chart
-                  chartData={this.state.burntData}
-                  title="Burnt vs inTake"
-                  legendPosition="bottom"
-                  type={Line}
-                />
-                  </Col>
-                </Row>
-              </Container>
+                    chartData={this.state.burntData}
+                    title="Burnt vs inTake"
+                    legendPosition="bottom"
+                    type={Line}
+                  />
+                </Col>
+              </Row>
+            </Container>
 
 
 
@@ -158,14 +158,14 @@ export default class Weekly extends Component {
 
 
 
-              <div className="col lg-3 bg-light" >
+            <div className="col lg-3 bg-light" >
 
 
 
             </div>
           </div>
         </div>
-        ></div>
+      </div>
     );
   }
 }
