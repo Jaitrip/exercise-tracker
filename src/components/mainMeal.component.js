@@ -17,18 +17,12 @@ export default class mainMeal extends Component {
   render() {
     return (
       <div>
-        <Navbar userID={this.state.userID}/>
-        <div className="jumbotron jumbotron-fluid py-2">
-          <div className="container">
-            <h1 className="display-4">Meal Plans</h1>
-            <p className="lead">Select from the options below</p>
-          </div>
-        </div>
-
-        <div class="container">
-          <div class="row justify-content-md-center">
-            <div class="col-md-auto">
-              <Container>
+      <Navbar userID={this.state.userID}/>
+      <div id="mainMeal-page">
+          <div class="col-md-auto ">
+            <h1 className="display-2 ">Meal Plans</h1>
+            <h1 className="lead">Select from the options below</h1>
+            <Container>
                 <Row className="justify-content-md-center">
                   <Col>
                   <Link to={"/createMeal/" + this.state.userID}>
@@ -52,10 +46,11 @@ export default class mainMeal extends Component {
                   </Col>
                 </Row>
               </Container>
+            
             </div>
           </div>
         </div>
-      </div>
+
     );
   }
 }

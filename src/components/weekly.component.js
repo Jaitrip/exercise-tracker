@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import Chart from "./layout/Chart";
 import Navbar from "./layout/Navbar";
 import { Bar, Line } from "react-chartjs-2";
+import {Container, Row, Col } from "react-bootstrap";
+import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export default class Weekly extends Component {
   constructor(props) {
@@ -114,30 +117,55 @@ export default class Weekly extends Component {
 
   render() {
     return (
+      
       <div>
-        <Navbar userID={this.state.userID} />
-        <div className="Weekly">
-          <div class="container">
-            <div class="row justify-content-md-center  ">
-              <div class="col-lg-9">
-                <Chart
+         <Navbar userID={this.state.userID} />
+      <div id="weekly-page">
+
+      <div class="col-lg-5 justify-content-md-center  ">
+            <h1 className="display-2 "> Weekly Chart</h1>
+
+            <Container>
+                <Row className = "bg-light"> 
+                  <Col>
+                  
+                  <Chart
                   chartData={this.state.chartData}
-                  title="Weekly Calories inTake"
+                  title="Calories inTake"
                   legendPosition="bottom"
                   type={Bar}
                 />
-
-                <Chart
+                  </Col>
+                </Row>
+                <Row className="bg-light">
+                <Col>
+                  <Chart
                   chartData={this.state.burntData}
                   title="Burnt vs inTake"
                   legendPosition="bottom"
                   type={Line}
                 />
-              </div>
+                  </Col>
+                </Row>
+              </Container>
+
+
+
+
+
+
+
+
+
+
+              <div className="col lg-3 bg-light" >
+
+
+
             </div>
           </div>
         </div>
-      </div>
+        ></div>
     );
   }
 }
