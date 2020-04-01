@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Navbar from './layout/Navbar'
 import "react-datepicker/dist/react-datepicker.css";
-import '../Login.css';
+import '../style.css';
 import { Link } from "react-router-dom";
 
 export default class Workout extends Component {

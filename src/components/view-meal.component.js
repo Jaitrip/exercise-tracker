@@ -3,7 +3,7 @@ import Navbar from './layout/Navbar'
 import DatePicker from 'react-datepicker';
 import axios from "axios";
 import "react-datepicker/dist/react-datepicker.css";
-import '../Login.css';
+import '../style.css';
 
 export default class ViewMeal extends Component {
     constructor(props) {

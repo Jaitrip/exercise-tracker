@@ -7,10 +7,10 @@ class Nav extends Component {
     this.toggleNavbar = this.toggleNavbar.bind(this);
     this.state = {
       collapsed: true,
-      userID : this.props.userID
+      userID: this.props.userID
     };
   }
-  
+
   toggleNavbar() {
     this.setState({
       collapsed: !this.state.collapsed
@@ -49,20 +49,23 @@ class Nav extends Component {
                 <Link className="nav-link" to={"/workout/" + this.state.userID}>
                   Workout
                 </Link>
-              </li>        
+              </li>
               {/* <li className="nav-item">
                 <Link className="nav-link" to="/exercise">
                   Exercise
                 </Link>
               </li> */}
               <li className="nav-item">
-                <Link className="nav-link" to={"/mainMeal/" + this.state.userID}>
+                <Link
+                  className="nav-link"
+                  to={"/mainMeal/" + this.state.userID}
+                >
                   Meals
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to={"/weekly/"  + this.state.userID}>
-                Weekly
+                <Link className="nav-link" to={"/weekly/" + this.state.userID}>
+                  Weekly
                 </Link>
               </li>
               <li className="nav-item">
