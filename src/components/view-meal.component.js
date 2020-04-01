@@ -14,7 +14,7 @@ export default class ViewMeal extends Component {
             beginingDate: new Date(),
             endingDate: new Date(),
             meals: [],
-            showMeal: false,
+            showMeal: true,
         }
 
         this.onChangeBeginingDate = this.onChangeBeginingDate.bind(this);
