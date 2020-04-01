@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Navbar from "./layout/Navbar";
-import "../Login.css";
+import "../style.css";
 import { Container, Row, Col } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";

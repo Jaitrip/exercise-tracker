@@ -3,8 +3,6 @@ import Chart from "./layout/Chart";
 import Navbar from "./layout/Navbar";
 import { Bar, Line } from "react-chartjs-2";
 import { Container, Row, Col } from "react-bootstrap";
-import { Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
 
 export default class Weekly extends Component {
   constructor(props) {
@@ -15,7 +13,6 @@ export default class Weekly extends Component {
       chartData: {},
       burntData: {}
     };
-    //recieves data from API Call via to feed into Chart
   }
 
   componentWillMount() {
@@ -23,7 +20,6 @@ export default class Weekly extends Component {
   }
 
   getChartData() {
-    // Ajax Call Here
     this.setState({
       chartData: {
         labels: [
@@ -117,18 +113,20 @@ export default class Weekly extends Component {
 
   render() {
     return (
-
       <div>
         <Navbar userID={this.state.userID} />
-        <div id="weekly-page">
 
-          <div class="col-lg-5 justify-content-md-center  ">
-            <h1 className="display-2 "> Weekly Chart</h1>
+        <div id="weekly-page">
+          <Container>
+            <div className="jumbotron-fluid  text-light">
+              <div className="container text-center">
+                <h1 className="display-4">Weekly Chart</h1>
+              </div>
+            </div>
 
             <Container>
-              <Row className="bg-light">
-                <Col>
-
+           <Row className="bg-light justify-content-md-center ">
+                <Col className="col col-lg-6" >
                   <Chart
                     chartData={this.state.chartData}
                     title="Calories inTake"
@@ -137,8 +135,8 @@ export default class Weekly extends Component {
                   />
                 </Col>
               </Row>
-              <Row className="bg-light">
-                <Col>
+              <Row className="bg-light justify-content-md-center my-1 ">
+                <Col className="col col-lg-6" >
                   <Chart
                     chartData={this.state.burntData}
                     title="Burnt vs inTake"
@@ -147,23 +145,8 @@ export default class Weekly extends Component {
                   />
                 </Col>
               </Row>
-            </Container>
-
-
-
-
-
-
-
-
-
-
-            <div className="col lg-3 bg-light" >
-
-
-
-            </div>
-          </div>
+              </Container>  
+          </Container>
         </div>
       </div>
     );

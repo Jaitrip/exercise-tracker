@@ -5,7 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { Modal, Button } from 'react-bootstrap';
 import axios from "axios";
 import {v4 as uuidv4} from "uuid";
-import '../Login.css';
+import '../style.css';
 
 export default class AddWorkout extends Component {
     constructor(props) {
