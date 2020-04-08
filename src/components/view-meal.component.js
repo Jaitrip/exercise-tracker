@@ -14,7 +14,7 @@ export default class ViewMeal extends Component {
             beginingDate: new Date(),
             endingDate: new Date(),
             meals: [],
-            showMeal: true,
+            showMeal: false,
         }
 
         this.onChangeBeginingDate = this.onChangeBeginingDate.bind(this);
@@ -37,39 +37,40 @@ export default class ViewMeal extends Component {
     handleShowMeal = (event) => {
         const formattedBeginingDate = new Date(this.state.beginingDate).toISOString().slice(0, 10)
         const formattedEndingDate = new Date(this.state.endingDate).toISOString().slice(0, 10)
+        
         axios.post(
-            "http://localhost:5000/meal/getMealBetweenDates", // Example link
+            "http://localhost:5000/meal/getMealsBetweenDates",
             {
                 user_id: this.state.userID,
                 start_date: formattedBeginingDate,
                 end_date: formattedEndingDate
             }
         )
-            .then(response => {
-                const meals = response.data
-                meals.forEach((meal) => {
-                    const formattedMeal = {
-                        mealName: meal.Name,
-                        mealCalorie: meal.Calorie,
-                        mealDate: new Date(meal.Date).toISOString().slice(0, 10)
-                    }
-                    this.setState({
-                        meals: this.state.meals.concat([formattedMeal])
-                    })
-                })
+        .then(response => {
+            const meals = response.data
+            meals.forEach((meal) => {
+                const formattedMeal = {
+                    mealName: meal.MealName,
+                    mealCalorie: meal.CalorieIntake ,
+                    mealDate: new Date(meal.Date).toISOString().slice(0, 10)
+                }
                 this.setState({
-                    showMeal: true
+                    meals: this.state.meals.concat([formattedMeal])
                 })
-                console.log(this.state.meals)
             })
-            .catch(error => {
-                console.log(error)
+            this.setState({
+                showMeal: true
             })
+        })
+        .catch(error => {
+            console.log(error)
+        })
+
         event.preventDefault()
     }
 
     render() {
-        if (this.state.showMeal === false) {
+        if (this.state.showMeal === true) {
             return (
                 <div id="view-meal-page">
                     <header id="header-view-meal">
@@ -86,7 +87,7 @@ export default class ViewMeal extends Component {
                                         <th>Date</th>
                                     </tr>
                                 </thead>
-                                {/* <tbody>
+                                <tbody>
                                 {this.state.meals.map((row, index) => (
                                     <tr>
                                         <td>{row.mealName}</td>
@@ -94,7 +95,7 @@ export default class ViewMeal extends Component {
                                         <td>{row.mealDate}</td>
                                     </tr>
                                 ))}
-                            </tbody> */}
+                            </tbody>
                             </table>
                         </div>
                     </div>
@@ -125,7 +126,7 @@ export default class ViewMeal extends Component {
                                     />
                                 </div>
                             </form>
-                            <form onSubmit={this.handleShowWorkout}>
+                            <form onSubmit={this.handleShowMeal}>
                                 <input type="submit" value="View my meals" />
                             </form>
                         </div>

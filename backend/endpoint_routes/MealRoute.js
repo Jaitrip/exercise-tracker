@@ -28,15 +28,14 @@ mealRouter.route("/getMealsByDate").post((request, result) => {
     })
 })
 
-mealRouter.route("/getMealsBetweenTwoDates").post((request, result) => {
+mealRouter.route("/getMealsBetweenDates").post((request, result) => {
     const sqlQuery = "SELECT * FROM Meal WHERE UserUserID = ? AND Date BETWEEN ? AND ?"
     const values = [
-        request.body.userid,
+        request.body.user_id,
         request.body.start_date,
         request.body.end_date
     ]
-
-    connection.query(sqlQuery, values, (error, rows) => {
+    connection.query(sqlQuery, values, (error, rows, fields) => {
         if (!error) {
             result.send(rows)
         } else {
