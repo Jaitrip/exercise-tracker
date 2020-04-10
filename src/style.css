@@ -67,6 +67,15 @@ html {
     align-items: center;
 }
 
+#account-page {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    background: url(BG.jpg) 50% 50%;
+    background-size: cover;
+    display: table;
+}
 
 .signin {
     border: 1px solid rgba(255, 255, 255, 0.5);
@@ -114,22 +123,22 @@ html {
 }
 
 /* Chrome only i think */
-.signin input::-webkit-input-placeholder {
+.signin input::-webkit-input-placeholder, .account form input::-webkit-input-placeholder {
     color: #fff;
 }
 
-.signin input:focus::-webkit-input-placeholder {
-    color:#999;
+.signin input:focus::-webkit-input-placeholder, .account form input::-webkit-input-placeholder {
+    color:rgb(190, 190, 190);
 }
 
-.signin input:focus {
+.signin input:focus, .account input:focus {
     border: 1px solid rgba(255, 255, 255, 1);
 }
 
 /* ===== END ===== */
 /* Buttons */
 
-.signin form input[type="submit"], .workout form input[type="submit"], .meals form input[type="submit"]{
+.signin form input[type="submit"], .workout form input[type="submit"], .meals form input[type="submit"], .account form input[type="submit"]{
     width: 200px;
     height: 50px;
     text-align: center;
@@ -144,7 +153,7 @@ html {
     transition: 0.25s;
 }
 
-.signin form input[type="submit"]:hover,.workout form input[type="submit"]:hover, .meals form input[type="submit"]:hover {
+.signin form input[type="submit"]:hover,.workout form input[type="submit"]:hover, .meals form input[type="submit"]:hover, .account form input[type="submit"]:hover {
     border: 1px solid #000;
     border-radius: 20px;
     background: #fff;
@@ -447,4 +456,83 @@ html {
     padding-left: 60px;
     margin-right: -90px;
     font-size: 20px;
+}
+
+/* Account Settings page */
+
+
+#account-page {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    
+    background-size: cover;
+    display: block;
+}
+
+.account-container {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    background: url(BG5.jpg) 50% 50%;
+    background-size: cover;
+}
+
+.account {
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    padding: 3em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.account h2 {
+    margin-top: 0px;
+    font-family: Source Sans Pro, sans-serif;
+    font-weight: lighter;
+    color: #fff;
+    font-size: 50px;
+    text-align: center;
+}
+
+.account form label{
+    display: block;
+    margin: auto;
+}
+
+@media screen and (min-width: 950px) {
+    .account form label{
+        display: block;
+        margin: auto;
+        padding-left: 75px;
+    }
+  }
+
+.account form input {
+    display: block;
+    width: 300px;
+    height: 50px;
+    background: rgba(0, 0, 0, 0.3);
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    font-family: Source Sans Pro, sans-serif;
+    font-weight: lighter;
+    font-size: 17px;
+    color: #fff;
+    margin: auto;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    border-radius: 15px;
+    transition: 0.25s;
+}
+
+.account form input[type="submit"]{
+    margin-bottom: 10px;
 }
