@@ -4,10 +4,8 @@ import { Bar } from "react-chartjs-2";
 class Chart extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      chartData: props.chartData,
-      burntData: props.burntData
+      chartData: this.props.chartData
     };
   }
 
@@ -18,6 +16,14 @@ class Chart extends Component {
     title: "",
     type: Bar
   };
+
+  componentDidUpdate(prevProps) {
+    if (prevProps !== this.props) {
+      this.setState({
+        chartData : this.props.chartData
+      })
+    }
+  }
 
   render() {
     return (

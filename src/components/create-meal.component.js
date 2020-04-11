@@ -58,9 +58,9 @@ export default class CreateMeal extends Component {
     });
   }
 
-  onChangeDate = date => {
+  onChangeDate(date) {
     this.setState({
-      startDate: date
+      date: date
     });
   };
 
@@ -128,11 +128,11 @@ export default class CreateMeal extends Component {
                         <DatePicker
                           name="date"
                           type="date"
-                          selected={this.state.startDate}
+                          selected={this.state.date}
                           onChange={this.onChangeDate}
                           required
                         />
-                      </Col>
+                      </Col>  
                     </Row>
                     <Row className="justify-content-md-center py-2">
                       <Col>

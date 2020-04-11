@@ -19,7 +19,7 @@ exerciseRouter.route("/addNewExercise").post((request, result) => {
     })
 })
 
-exerciseRouter.route("/getExerciseByWorkout").get((request, result) => {
+exerciseRouter.route("/getExerciseByWorkout/:workout_id").get((request, result) => {
     const sqlQuery = "SELECT * FROM Exercise WHERE WorkoutWorkoutID = ?"
     connection.query(sqlQuery, [request.params.workout_id], (error, rows, fields) => {
         if (!error) {

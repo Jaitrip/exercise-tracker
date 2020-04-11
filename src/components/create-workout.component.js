@@ -16,6 +16,7 @@ export default class AddWorkout extends Component {
             name: '',
             type: '',
             total_duration: 0,
+            calories_burnt: 0,
             date: new Date(),
             exercises: [],
             show: false,
@@ -37,6 +38,7 @@ export default class AddWorkout extends Component {
 
     addNewWorkout(workoutID) {
         const formattedDate = new Date(this.state.date).toISOString().slice(0, 10)
+        console.log(this.state.calories_burnt)
         axios.post(
             "http://localhost:5000/workout/addNewWorkout", 
             {
@@ -45,7 +47,8 @@ export default class AddWorkout extends Component {
                 duration :  this.state.total_duration,
                 type : this.state.type,
                 date : formattedDate,
-                user_id : this.state.userID
+                user_id : this.state.userID,
+                calories_burnt : this.state.calories_burnt
             }
         )
         .then(response => {
@@ -123,12 +126,16 @@ export default class AddWorkout extends Component {
     handleAddExercise = () => {
         this.setState({
             exercises : this.state.exercises.concat([this.state.currentExercise]),
+            calories_burnt : this.state.calories_burnt + Number(this.state.currentExercise.caloriesBurnt),
+            total_duration : this.state.total_duration + Number(this.state.currentExercise.exerciseDuration),
             show : false,
             currentExercise : {
                 exerciseName : "",
                 exerciseDuration : "",
                 caloriesBurnt : ""
             }
+        }, function() {
+            console.log(this.state.calories_burnt)
         })
     }
 
@@ -157,14 +164,6 @@ export default class AddWorkout extends Component {
                                 value={this.state.type}
                                 onChange={this.handleChange}
                                 placeholder="Enter type"
-                            />
-                            <label>Duration (in minutes)</label>
-                            <input 
-                                type="text"
-                                name="total_duration"
-                                value={this.state.total_duration}
-                                onChange={this.handleChange} 
-                                placeholder="Enter duration"
                             />
                             <label>Exercises</label>
                             <table className="table">

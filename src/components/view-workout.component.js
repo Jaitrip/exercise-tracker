@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Navbar from './layout/Navbar'
 import DatePicker from 'react-datepicker';
 import axios from "axios";
+import moment from "moment"
 import "react-datepicker/dist/react-datepicker.css";
 import '../style.css';
 
@@ -35,8 +36,9 @@ export default class ViewWorkout extends Component {
     }
 
     handleShowWorkout = (event) => {
-        const formattedBeginingDate = new Date(this.state.beginingDate).toISOString().slice(0, 10)
-        const formattedEndingDate = new Date(this.state.endingDate).toISOString().slice(0, 10)
+        const formattedBeginingDate = moment(this.state.beginingDate).format("YYYY-MM-DD")
+        const formattedEndingDate = moment(this.state.endingDate).format("YYYY-MM-DD")
+
         axios.post(
             "http://localhost:5000/workout/getWorkoutBetweenDates", 
             {
@@ -51,8 +53,9 @@ export default class ViewWorkout extends Component {
                 const formattedWorkout = {
                     workoutName : workout.Name,
                     workoutDuration : workout.Duration,
+                    workoutCaloriesBurnt : workout.CaloriesBurnt,
                     workoutType : workout.Type,
-                    workoutDate :  new Date(workout.Date).toISOString().slice(0, 10)
+                    workoutDate :  moment(workout.Date).format("YYYY-MM-DD")
                 }
                 this.setState({
                     workouts : this.state.workouts.concat([formattedWorkout])
@@ -85,6 +88,7 @@ export default class ViewWorkout extends Component {
                                         <th>Workout Name</th>
                                         <th>Workout Type</th>
                                         <th>Duration (in minutes)</th>
+                                        <th>Calories Burnt</th>
                                         <th>Date</th>
                                     </tr>
                                 </thead>
@@ -94,6 +98,7 @@ export default class ViewWorkout extends Component {
                                             <td>{row.workoutName}</td>
                                             <td>{row.workoutType}</td>
                                             <td>{row.workoutDuration}</td>
+                                            <td>{row.workoutCaloriesBurnt}</td>
                                             <td>{row.workoutDate}</td>
                                         </tr>
                                     ))}

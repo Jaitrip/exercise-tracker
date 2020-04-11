@@ -10,57 +10,11 @@ export default class Workout extends Component {
 
         this.state = {
             userID : this.props.match.params.id,
-            name: '',
-            type: '',
-            total_duration: 0,
-            date: new Date(),
-            exercises: [],
             show: false,
-            isView: false,
-            isCreateWorkout: false
         }
 
         this.handleClose = this.handleClose.bind(this);
         this.handleShow = this.handleShow.bind(this);
-    }
-
-    onChangeName(e) {
-        this.setState({
-            name: e.target.value
-        });
-    }
-
-    onChangeType(e) {
-        this.setState({
-            type: e.target.value
-        });
-    }
-
-    onChangeDuration(e) {
-        this.setState({
-            total_duration: e.target.value
-        });
-    }
-
-    onChangeDate(date) {
-        this.setState({
-            date: date
-        });
-    }
-
-    onSubmit(e) {
-        e.preventDefault();
-
-        const newWorkout = {
-            name: this.state.name,
-            description: this.state.description,
-            duration: this.state.duration,
-            date: this.state.date
-        };
-
-        console.log(newWorkout);
-
-        window.location = '/';
     }
 
     handleClose = () => this.setState({ show: false });

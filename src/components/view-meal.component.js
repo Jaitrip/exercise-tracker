@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Navbar from './layout/Navbar'
 import DatePicker from 'react-datepicker';
 import axios from "axios";
+import moment from "moment"
 import "react-datepicker/dist/react-datepicker.css";
 import '../style.css';
 
@@ -35,8 +36,8 @@ export default class ViewMeal extends Component {
     }
 
     handleShowMeal = (event) => {
-        const formattedBeginingDate = new Date(this.state.beginingDate).toISOString().slice(0, 10)
-        const formattedEndingDate = new Date(this.state.endingDate).toISOString().slice(0, 10)
+        const formattedBeginingDate = moment(this.state.beginingDate).format("YYYY-MM-DD")
+        const formattedEndingDate = moment(this.state.endingDate).format("YYYY-MM-DD")
         
         axios.post(
             "http://localhost:5000/meal/getMealsBetweenDates",
@@ -52,7 +53,7 @@ export default class ViewMeal extends Component {
                 const formattedMeal = {
                     mealName: meal.MealName,
                     mealCalorie: meal.CalorieIntake ,
-                    mealDate: new Date(meal.Date).toISOString().slice(0, 10)
+                    mealDate: moment(meal.Date).format("YYYY-MM-DD")
                 }
                 this.setState({
                     meals: this.state.meals.concat([formattedMeal])
