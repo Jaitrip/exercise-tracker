@@ -27,6 +27,7 @@ export default class AddWorkout extends Component {
             }
         }
 
+        //bind all methods to the object
         this.handleClose = this.handleClose.bind(this);
         this.handleShow = this.handleShow.bind(this);
         this.handleChange = this.handleChange.bind(this); 
@@ -36,6 +37,7 @@ export default class AddWorkout extends Component {
         this.onSubmit = this.onSubmit.bind(this);
     }
 
+    //add new workout to the database
     addNewWorkout(workoutID) {
         const formattedDate = new Date(this.state.date).toISOString().slice(0, 10)
         console.log(this.state.calories_burnt)
@@ -60,6 +62,7 @@ export default class AddWorkout extends Component {
         })
     }
 
+    //add all entered exercises to the database
     addExercises(workoutID) {
         const exercises = this.state.exercises
         exercises.forEach((exercise) => {
@@ -84,6 +87,7 @@ export default class AddWorkout extends Component {
         })
     }
 
+    //handle change of values in inputs
     handleChange(event) {
         const value = event.target.value
         const name = event.target.name
@@ -93,6 +97,7 @@ export default class AddWorkout extends Component {
         })
     }
 
+    //handle date change
     onChangeDate(date) {
         this.setState({
             date: date
@@ -100,17 +105,24 @@ export default class AddWorkout extends Component {
         console.log(this.state.date)
     }
 
+    //when user presses add workout
     onSubmit(e) {
+        //create a uuid
         const workoutID = uuidv4()
+        
+        //add workout and exercises to db
         this.addNewWorkout(workoutID);
         this.addExercises(workoutID);
         e.preventDefault();
+
+        //take the user back to the create workout page
         window.location = "/workout/createWorkout/" + this.state.userID
     }   
 
     handleClose = () => this.setState({ show: false });
     handleShow = () => this.setState({ show: true });
 
+    //handles change of input values
     handleExerciseChange(event) {
         const value = event.target.value
         const name = event.target.name
@@ -123,6 +135,7 @@ export default class AddWorkout extends Component {
         })
     }
 
+    //update state exercises when a new exercise is added
     handleAddExercise = () => {
         this.setState({
             exercises : this.state.exercises.concat([this.state.currentExercise]),

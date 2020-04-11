@@ -16,11 +16,13 @@ export default class Login extends Component {
         this.onLoginSubmit = this.onLoginSubmit.bind(this)
     }
 
+    //if signup button is pressed, take user to sign up page
     onSubmit(e) {
         e.preventDefault();
         window.location = '/signup';
     }
 
+    //save input changes to state
     handleChange(event) {
         const value = event.target.value
         const name = event.target.name
@@ -30,13 +32,17 @@ export default class Login extends Component {
         })
     }
 
+    //when user presses login get the password
     onLoginSubmit(event) {
         axios.get("http://localhost:5000/user/getPassword/" + this.state.username)
             .then(response => {
                 const actualPassword = response.data[0].password
+                //check if entered password matches actual password
                 if (actualPassword === this.state.password) {
+                    //if password correct, take user to the homepage
                     window.location = "/weekly/" + this.state.username
                 } else {
+                    //if incorrect then take user back to login page
                     window.location = "/"
                 }
             })

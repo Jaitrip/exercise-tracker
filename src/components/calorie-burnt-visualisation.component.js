@@ -43,6 +43,7 @@ export default class CalorieBurntVisualisation extends Component {
     }
   }
 
+  //sort data and extract calorie values 
   convertToDataset = (dataArray) => {
     const sortedArray = dataArray.sort((a, b) => {
       return moment(a[0]) - moment(b[0])
@@ -51,6 +52,7 @@ export default class CalorieBurntVisualisation extends Component {
     return modifiedArray
   }
 
+  //if props change then update state
   componentDidUpdate(prevProps) {
     if (prevProps !== this.props) { 
       //console.log(this.convertToDataset(this.props.caloriesBurnt))

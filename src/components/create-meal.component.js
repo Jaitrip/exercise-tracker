@@ -18,12 +18,14 @@ export default class CreateMeal extends Component {
       date: new Date()
     };
 
+    //bind methods to the object so that the methods can change state
     this.handleChange = this.handleChange.bind(this);
     this.cancelCreateMeal = this.cancelCreateMeal.bind(this);
     this.onChangeDate = this.onChangeDate.bind(this);
     this.onCreateMeal = this.onCreateMeal.bind(this);
   }
 
+  //add the meal to the database
   onCreateMeal(e) {
     const formattedDate = new Date(this.state.date).toISOString().slice(0, 10);
     axios
@@ -37,6 +39,7 @@ export default class CreateMeal extends Component {
       .then(response => {
         console.log(response);
         console.log("Meal created successfully!");
+        //if successful, take user back to the create meal page
         window.location = "/createMeal/" + this.state.userID;
       })
       .catch(error => {
@@ -50,6 +53,7 @@ export default class CreateMeal extends Component {
     window.location = "/mainMeal/" + this.state.userID;
   }
 
+  //handle change of value in input
   handleChange(event) {
     const value = event.target.value;
     const name = event.target.name;
@@ -58,6 +62,7 @@ export default class CreateMeal extends Component {
     });
   }
 
+  //set state date
   onChangeDate(date) {
     this.setState({
       date: date

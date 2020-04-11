@@ -16,6 +16,7 @@ export default class AddWorkout extends Component {
             hasChangedDetails: false
         }
 
+        //bind methods to the object
         this.handleClose = this.handleClose.bind(this);
         this.handleShow = this.handleShow.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -23,10 +24,12 @@ export default class AddWorkout extends Component {
     }
 
     componentDidMount() {
+        //when page loaded, get users details
         this.getUserDetails()
     }
 
     getUserDetails = () => {
+        //get users name, weight and weight goal
         axios.get("http://localhost:5000/user/getUserDetails/" + this.state.userID)
         .then(response => {
             this.setState({
@@ -40,6 +43,7 @@ export default class AddWorkout extends Component {
         })
     }
 
+    //save input changes to state
     handleChange(event) {
         const value = event.target.value
         const name = event.target.name
@@ -48,7 +52,8 @@ export default class AddWorkout extends Component {
             [name]: value
         })
     }
-
+    
+    //update current weight of the user
     onSubmit(event) {
         axios.post(
             "http://localhost:5000/user/updateWeight",

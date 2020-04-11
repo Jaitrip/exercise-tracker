@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./style.css"
 
+//load all components
 import Login from "./components/login.component"
 import SignUp from "./components/signup.component"
 import Weekly from "./components/weekly.component"
@@ -15,6 +16,7 @@ import ViewMeal from './components/view-meal.component';
 import UserAccount from './components/user-account.component';
 
 function App() {
+  //set up all routes
   return (
     <Router>
       <div>

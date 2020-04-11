@@ -18,11 +18,13 @@ export default class ViewMeal extends Component {
             showMeal: false,
         }
 
+        //bind methods to the object
         this.onChangeBeginingDate = this.onChangeBeginingDate.bind(this);
         this.onChangeEndingDate = this.onChangeEndingDate.bind(this);
         this.handleShowMeal = this.handleShowMeal.bind(this);
     }
 
+    //save date changes to state 
     onChangeBeginingDate(date) {
         this.setState({
             beginingDate: date
@@ -35,6 +37,7 @@ export default class ViewMeal extends Component {
         });
     }
 
+    //sort meals by date
     sortByDate = (dataArray) => {
         const sortedArray = dataArray.sort((a, b) => {
           return moment(b.mealDate) - moment(a.mealDate) 
@@ -43,9 +46,11 @@ export default class ViewMeal extends Component {
     }
 
     handleShowMeal = (event) => {
+        //get dates
         const formattedBeginingDate = moment(this.state.beginingDate).format("YYYY-MM-DD")
         const formattedEndingDate = moment(this.state.endingDate).format("YYYY-MM-DD")
         
+        //get all meals between two dates
         axios.post(
             "http://localhost:5000/meal/getMealsBetweenDates",
             {
@@ -62,6 +67,7 @@ export default class ViewMeal extends Component {
                     mealCalorie: meal.CalorieIntake ,
                     mealDate: moment(meal.Date).format("DD/MM/YYYY")
                 }
+                //save meals to state
                 this.setState({
                     meals: this.state.meals.concat([formattedMeal])
                 })

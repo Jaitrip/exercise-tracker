@@ -18,11 +18,13 @@ export default class ViewWorkout extends Component {
             showWorkout: false,
         }
 
+        //bind methods to object
         this.onChangeBeginingDate = this.onChangeBeginingDate.bind(this);
         this.onChangeEndingDate = this.onChangeEndingDate.bind(this);
         this.handleShowWorkout = this.handleShowWorkout.bind(this);
     }
 
+    //save date changes to state
     onChangeBeginingDate(date) {
         this.setState({
             beginingDate: date
@@ -35,6 +37,7 @@ export default class ViewWorkout extends Component {
         });
     }
 
+    //sort workouts by date
     sortByDate = (dataArray) => {
         const sortedArray = dataArray.sort((a, b) => {
           return moment(b.workoutDate) - moment(a.workoutDate) 
@@ -43,9 +46,11 @@ export default class ViewWorkout extends Component {
     }
 
     handleShowWorkout = (event) => {
+        //get the dates
         const formattedBeginingDate = moment(this.state.beginingDate).format("YYYY-MM-DD")
         const formattedEndingDate = moment(this.state.endingDate).format("YYYY-MM-DD")
 
+        //get all workouts between the two dates
         axios.post(
             "http://localhost:5000/workout/getWorkoutBetweenDates", 
             {
@@ -64,6 +69,7 @@ export default class ViewWorkout extends Component {
                     workoutType : workout.Type,
                     workoutDate :  moment(workout.Date).format("DD/MM/YYYY")
                 }
+                //save the workouts to state
                 this.setState({
                     workouts : this.state.workouts.concat([formattedWorkout])
                 })

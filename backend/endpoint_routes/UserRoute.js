@@ -1,6 +1,7 @@
 const userRouter = require("express").Router();
 const connection = require("../database.js");
 
+//get user password for login
 userRouter.route("/getPassword/:user_id").get((request, result) => {
     const sqlQuery = "SELECT password FROM User WHERE UserID = ?"
     connection.query(sqlQuery, [request.params.user_id], (error, rows, fields) => {
@@ -12,6 +13,7 @@ userRouter.route("/getPassword/:user_id").get((request, result) => {
     })
 })
 
+//get all user details
 userRouter.route("/getUserDetails/:user_id").get((request, result) => {
     const sqlQuery = "SELECT * FROM User WHERE UserID = ?"
     connection.query(sqlQuery, [request.params.user_id], (error, rows, fields) => {
@@ -23,6 +25,7 @@ userRouter.route("/getUserDetails/:user_id").get((request, result) => {
     })
 })
 
+//update users weight
 userRouter.route("/updateWeight").post((request, result) => {
     const sqlQuery = "UPDATE User SET Weight = ? WHERE UserID = ?"
     const values = [
@@ -39,6 +42,7 @@ userRouter.route("/updateWeight").post((request, result) => {
     })
 })
 
+//add new user to the database
 userRouter.route("/addNewUser").post((request, result) => {
     const sqlQuery = "INSERT INTO User (UserID, password, Name, Age, Weight, WeightGoal) VALUES (?)"
     const values  = [

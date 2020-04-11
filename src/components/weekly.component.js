@@ -6,6 +6,7 @@ import axios from "axios"
 import CalorieIntakeVisualisation from "./calorie-intake-visualisation.component";
 import CalorieBurntVisualisation from "./calorie-burnt-visualisation.component";
 
+//get all dates in a week
 function getCurrentDates(startDate) {
   let datesOfWeek = []
   for(let i = 0; i < 7; i++) {
@@ -29,13 +30,16 @@ export default class Weekly extends Component {
     }
   }
 
+  //when object mounts, get all nessesary arrays
   componentDidMount() {
     this.getCurrentWeekCalorieIntake()
     this.getPreviousWeekCalorieIntake()
     this.getWeeklyCaloriesBurnt()
   }
 
+  //get the weekly calories burnt
   getWeeklyCaloriesBurnt = () => {
+    //get all the workouts for each day
     this.state.currentWeekDates.forEach((day) => {
       axios.post(
         "http://localhost:5000/workout/getWorkoutByDate",
@@ -46,10 +50,12 @@ export default class Weekly extends Component {
       )
       .then((response) => {
         if (response.data != null) {
+          //add up the total calories for the day
           let totalCalories = 0
           response.data.forEach((workout) => {
             totalCalories = totalCalories + Number(workout.CaloriesBurnt)
           })
+          //save total calories for the day
           this.setState({
             currentWeekCaloriesBurnt : [...this.state.currentWeekCaloriesBurnt, [day, totalCalories]]
           })
@@ -61,7 +67,9 @@ export default class Weekly extends Component {
     })
   }
 
+  //get all calories consumed for the week
   getCurrentWeekCalorieIntake = () => {
+    //for each day of the week, get all the meals
     this.state.currentWeekDates.forEach((day) => {
       axios.post(
         "http://localhost:5000/meal/getMealsByDate", 
@@ -72,10 +80,12 @@ export default class Weekly extends Component {
       )
       .then((response) => {
         if (response.data != null) {
+          //add up total calories of meals for each day
           let totalCalories = 0
           response.data.forEach((meal) => {
             totalCalories = totalCalories + Number(meal.CalorieIntake)
           })
+          //save total calories for the day to state
           this.setState({
             currentWeekCalorieIntake : [...this.state.currentWeekCalorieIntake, [day, totalCalories]]
           })
@@ -87,7 +97,9 @@ export default class Weekly extends Component {
     })
   }
 
+  //get all calories consumed for the previous week
   getPreviousWeekCalorieIntake = () => {
+    //for each day of the week, get all the meals
     this.state.previousWeekDates.forEach((day) => {
       axios.post(
         "http://localhost:5000/meal/getMealsByDate", 
@@ -98,11 +110,13 @@ export default class Weekly extends Component {
       )
       .then((response) => {
         if (response.data != null) {
+          //add up total calories of meals for each day
           let totalCalories = 0
           response.data.forEach((meal) => {
             totalCalories = totalCalories + Number(meal.CalorieIntake)
           })
 
+          //save total calories for the day to state
           this.setState({
             previousWeekCalorieIntake : [...this.state.previousWeekCalorieIntake, [day, totalCalories]]
           })

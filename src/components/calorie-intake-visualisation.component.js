@@ -60,6 +60,7 @@ export default class CalorieIntakeVisualisation extends Component {
     }
   }
 
+  //sort array by date and extract calorie value
   convertToDataset = (dataArray) => {
     const sortedArray = dataArray.sort((a, b) => {
       return moment(a[0]) - moment(b[0])
@@ -68,6 +69,7 @@ export default class CalorieIntakeVisualisation extends Component {
     return modifiedArray
   }
 
+  //update the state if props change
   componentDidUpdate(prevProps) {
     if (prevProps !== this.props) { 
       this.setState({

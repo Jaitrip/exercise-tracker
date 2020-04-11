@@ -16,12 +16,15 @@ export default class SignUp extends Component {
             weightGoal: ''
         }
 
+        //bind methods to object
         this.handleChange = this.handleChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
     }
 
     onSubmit(e) {
+        //if the password and confirmation password are the same
         if (this.state.password === this.state.confirmPassword) {
+            //add user to the database
             axios.post(
                 "http://localhost:5000/user/addNewUser", 
                 {
@@ -36,6 +39,7 @@ export default class SignUp extends Component {
             .then(response => {
                 console.log(response)
                 console.log("User created successfully!")
+                //take user to the login page
                 window.location = '/';
             })
             .catch(error => {
@@ -48,6 +52,7 @@ export default class SignUp extends Component {
         e.preventDefault();
     }
 
+    //save input changes to state
     handleChange(event) {
         const value = event.target.value
         const name = event.target.name

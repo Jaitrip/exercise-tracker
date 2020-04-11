@@ -1,6 +1,7 @@
 const workoutRouter = require("express").Router();
 const connection = require("../database.js");
 
+//add new workout to the database
 workoutRouter.route("/addNewWorkout").post((request, result) => {
     const sqlQuery = "INSERT INTO Workout (WorkoutID, Name, Duration, Type, Date, UserUserID, CaloriesBurnt) VALUES (?)"
     const values = [
@@ -21,6 +22,7 @@ workoutRouter.route("/addNewWorkout").post((request, result) => {
     })
 })
 
+//Get workout information by workout id
 workoutRouter.route("/getWorkoutByID").get((request, result) => {
     const sqlQuery = "SELECT * FROM Workout WHERE WorkoutID = ?"
     connection.query(sqlQuery, [request.params.workout_id], (error, rows, fields) => {
@@ -32,6 +34,7 @@ workoutRouter.route("/getWorkoutByID").get((request, result) => {
     })
 })
 
+//get all workout on a certain date
 workoutRouter.route("/getWorkoutByDate").post((request, result) => {
     const sqlQuery = "SELECT * FROM Workout WHERE UserUserID = ? AND Date = ?"
     const values = [
@@ -47,6 +50,7 @@ workoutRouter.route("/getWorkoutByDate").post((request, result) => {
     })
 })
 
+//get all workouts between two dates
 workoutRouter.route("/getWorkoutBetweenDates").post((request, result) => {
     const sqlQuery = "SELECT * FROM Workout WHERE UserUserID = ? AND Date BETWEEN ? AND ?"
     const values = [
