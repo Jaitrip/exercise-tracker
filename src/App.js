@@ -12,6 +12,7 @@ import ViewWorkout from "./components/view-workout.component"
 import MainMeal from "./components/mainMeal.component"
 import CreateMeal from './components/create-meal.component';
 import ViewMeal from './components/view-meal.component';
+import UserAccount from './components/user-account.component';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/mainMeal/:id" exact component={MainMeal} />
         <Route path="/createMeal/:id" exact component={CreateMeal} />
         <Route path="/viewMeal/:id" exact component={ViewMeal} />
+        <Route path="/account/:id" exact component={UserAccount} />
       </div>
     </Router>
   );

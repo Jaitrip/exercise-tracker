@@ -50,11 +50,6 @@ class Nav extends Component {
                   Workout
                 </Link>
               </li>
-              {/* <li className="nav-item">
-                <Link className="nav-link" to="/exercise">
-                  Exercise
-                </Link>
-              </li> */}
               <li className="nav-item">
                 <Link
                   className="nav-link"
@@ -66,6 +61,11 @@ class Nav extends Component {
               <li className="nav-item">
                 <Link className="nav-link" to={"/weekly/" + this.state.userID}>
                   Weekly
+                </Link>
+              </li>
+              <li className="nav-item ">
+                <Link className="nav-link" to={"/account/" + this.state.userID}>
+                  Account
                 </Link>
               </li>
               <li className="nav-item">
