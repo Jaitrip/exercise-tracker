@@ -35,6 +35,13 @@ export default class ViewWorkout extends Component {
         });
     }
 
+    sortByDate = (dataArray) => {
+        const sortedArray = dataArray.sort((a, b) => {
+          return moment(b.workoutDate) - moment(a.workoutDate) 
+        })
+        return sortedArray
+    }
+
     handleShowWorkout = (event) => {
         const formattedBeginingDate = moment(this.state.beginingDate).format("YYYY-MM-DD")
         const formattedEndingDate = moment(this.state.endingDate).format("YYYY-MM-DD")
@@ -55,7 +62,7 @@ export default class ViewWorkout extends Component {
                     workoutDuration : workout.Duration,
                     workoutCaloriesBurnt : workout.CaloriesBurnt,
                     workoutType : workout.Type,
-                    workoutDate :  moment(workout.Date).format("YYYY-MM-DD")
+                    workoutDate :  moment(workout.Date).format("DD/MM/YYYY")
                 }
                 this.setState({
                     workouts : this.state.workouts.concat([formattedWorkout])
@@ -93,7 +100,7 @@ export default class ViewWorkout extends Component {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {this.state.workouts.map((row, index) => (
+                                    {this.sortByDate(this.state.workouts).map((row, index) => (
                                         <tr>
                                             <td>{row.workoutName}</td>
                                             <td>{row.workoutType}</td>

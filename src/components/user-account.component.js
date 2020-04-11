@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Navbar from './layout/Navbar';
+import axios from "axios"
 import "react-datepicker/dist/react-datepicker.css";
 import '../style.css';
 
@@ -10,9 +11,8 @@ export default class AddWorkout extends Component {
         this.state = {
             userID: this.props.match.params.id,
             name: 'example name',
-            age: 12,
             current_weight: 420,
-            weight_goal: 69,
+            weightGoal : 0,
             hasChangedDetails: false
         }
 
@@ -22,15 +22,50 @@ export default class AddWorkout extends Component {
         this.onSubmit = this.onSubmit.bind(this);
     }
 
-
-
-    handleChange(event) {
-
+    componentDidMount() {
+        this.getUserDetails()
     }
 
+    getUserDetails = () => {
+        axios.get("http://localhost:5000/user/getUserDetails/" + this.state.userID)
+        .then(response => {
+            this.setState({
+                name : response.data[0].Name,
+                current_weight : response.data[0].Weight,
+                weightGoal : response.data[0].WeightGoal
+            })
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
 
-    onSubmit(e) {
+    handleChange(event) {
+        const value = event.target.value
+        const name = event.target.name
 
+        this.setState({
+            [name]: value
+        })
+    }
+
+    onSubmit(event) {
+        axios.post(
+            "http://localhost:5000/user/updateWeight",
+            {
+                weight : this.state.current_weight,
+                user_id : this.state.userID
+            }
+        )
+        .then(response => {
+            console.log(response)
+            console.log("Weight Updated")
+        })
+        .catch(error => {
+            console.log(error)
+        })
+        window.location = "/account/" + this.state.userID
+        event.preventDefault();
     }
 
     handleClose = () => this.setState({ show: false });
@@ -59,31 +94,16 @@ export default class AddWorkout extends Component {
                                 type="text"
                                 name="name"
                                 value={this.state.name}
-                                readOnly // I imagine you will pull the accounts name
+                                readOnly
                             />
-                            <label>Age</label>
-                            <input
-                                type="text"
-                                name="age"
-                                onChange={this.handleChange}
-                                placeholder="Enter your age"
-                            />
-                            <label>Current Weight</label>
+                            <label>Update your weight</label>
+                            <label>{"Your current weight (in kg) is: " + this.state.current_weight}</label>
                             <input
                                 type="text"
                                 name="current_weight"
-                                
                                 onChange={this.handleChange}
-                                placeholder="Enter your current weight"
+                                placeholder="Enter your weight"
                             />
-                            <label>Weight Goal</label>
-                            <input
-                                type="text"
-                                name="weight_goal"
-                                onChange={this.handleChange}
-                                placeholder="Enter your weight goal"
-                            />
-
                             <input type="submit" value="Save changes"></input>
                             <input type="submit" value="Cancel"></input>
                         </form>

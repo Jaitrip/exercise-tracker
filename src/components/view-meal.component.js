@@ -35,6 +35,13 @@ export default class ViewMeal extends Component {
         });
     }
 
+    sortByDate = (dataArray) => {
+        const sortedArray = dataArray.sort((a, b) => {
+          return moment(b.mealDate) - moment(a.mealDate) 
+        })
+        return sortedArray
+    }
+
     handleShowMeal = (event) => {
         const formattedBeginingDate = moment(this.state.beginingDate).format("YYYY-MM-DD")
         const formattedEndingDate = moment(this.state.endingDate).format("YYYY-MM-DD")
@@ -53,7 +60,7 @@ export default class ViewMeal extends Component {
                 const formattedMeal = {
                     mealName: meal.MealName,
                     mealCalorie: meal.CalorieIntake ,
-                    mealDate: moment(meal.Date).format("YYYY-MM-DD")
+                    mealDate: moment(meal.Date).format("DD/MM/YYYY")
                 }
                 this.setState({
                     meals: this.state.meals.concat([formattedMeal])
@@ -89,7 +96,7 @@ export default class ViewMeal extends Component {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                {this.state.meals.map((row, index) => (
+                                {this.sortByDate(this.state.meals).map((row, index) => (
                                     <tr>
                                         <td>{row.mealName}</td>
                                         <td>{row.mealCalorie}</td>
